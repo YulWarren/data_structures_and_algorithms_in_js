@@ -22,4 +22,4 @@ moveTo()|将当前位置移动到指定位置
 
 ## 实现列表类
 
-see **list.js**
+see <https://github.com/YulWarren/data_structures_and_algorithms_in_js/blob/master/list.js> 
