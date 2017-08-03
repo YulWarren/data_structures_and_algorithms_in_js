@@ -22,33 +22,4 @@ moveTo()|将当前位置移动到指定位置
 
 ## 实现列表类
 
-```js
-function List() {
-    this.listSize = 0;
-    this.pos = 0;
-    this.dataScore = []; // use array to store the element of list
-    this.clear = clear;
-    this.find = find;
-    this.toString = toString;
-    this.insert = insert;
-    this.append = append;
-    this.remove = remove;
-    this.front = front;
-    this.end = end;
-    this.prev = prev;
-    this.next = next;
-    this.length = length;
-    this.currPos = currPos;
-    this.moveTo = moveTo;
-    this.getElement = getElement;
-    this.contains = contains;
-}
-```
-
-### append
-
-```js
-function append(element) {
-    this.dataStore[this.listSize++] = element;
-}
-```
+see **list.js**
