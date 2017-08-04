@@ -16,7 +16,7 @@
 
 - [x] LinkedList
 
-- [ ] Dict
+- [x] Dict
 
 - [ ] HashTable
 
