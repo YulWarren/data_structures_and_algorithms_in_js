@@ -18,7 +18,7 @@
 
 - [x] Dict
 
-- [ ] HashTable
+- [x] HashTable
 
 - [ ] Set
 
