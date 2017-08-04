@@ -16,18 +16,18 @@
 
 - [x] LinkedList
 
-- [] Dict
+- [ ] Dict
 
-- [] HashTable
+- [ ] HashTable
 
-- [] Set
+- [ ] Set
 
-- [] BST
+- [ ] BST
 
-- [] Graph
+- [ ] Graph
 
-- [] Sequence algorithm
+- [ ] Sequence algorithm
 
-- [] Seek algorithm
+- [ ] Seek algorithm
 
-- [] High-level algorithm
+- [ ] High-level algorithm
