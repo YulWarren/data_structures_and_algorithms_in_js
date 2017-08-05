@@ -10,6 +10,7 @@ function CArray(numElements) {
     this.swap = swap;
     this.bubbleSort = bubbleSort;
     this.selectionSort = selectionSort;
+    this.insertionSort = insertionSort;
     for (var i = 0; i < numElements; i++) {
         this.dataStore[i] = i;
     }
@@ -83,16 +84,29 @@ function selectionSort() {
 // 插入排序
 // 原理是：外循环将数组元素挨个移动，而内循环则对外循环中选中的元素及它后面的那个元素进行比较。如果外循环中选中的元素比内循环中选中的元素小，则数组元素会向右移动，为内循环的这个元素腾出位置
 
+// function insertionSort() {
+//     var temp; // 暂存选中的元素
+//     for (var i = 1; i <= this.dataStore.length - 1; i++) { // 从数组第二位开始遍历，直到最后；第一个元素默认为已经排序
+//         temp = this.dataStore[i]; // 把选中的元素放到temp中
+        
+//        for (var j = i; j > 0 && this.dataStore[j - 1] >= temp; j--) { //从已选中的元素开始，如果它不在第一位且它前面的元素比它大，则把它的位置让给它前面的元素
+//             this.dataStore[j] = this.dataStore[j - 1]; 
+            
+//         }
+//         this.dataStore[j] = temp; // 让之前暂存的元素重新占领位置（j--之后的位置）
+//         console.log(this.toString())
+//     }
+// }
+
 function insertionSort() {
-    var temp, inner;
-    for (var outer = 1; outer <= this.dataStore.length - 1; outer++) {
-        temp = this.dataStore[outer];
-        inner = outer;
-        while (inner > 0 && this.dataStore[inner - 1] >= temp) {
-            this.dataStore[inner] = this.dataStore[inner - 1];
-            inner--
+    var temp;
+    for (var i = 1; i <= this.dataStore.length - 1; i++) {
+        temp = this.dataStore[i];
+        for (var j = i; j > 0 && this.dataStore[j - 1] >= temp; j--) {
+            this.dataStore[j] = this.dataStore[j - 1];
         }
-        this.dataStore[inner] = temp;
+        this.dataStore[j] = temp;
+        console.log(this.toString());
     }
 }
 
@@ -100,5 +114,5 @@ var numElements = 10;
 var mynums = new CArray(numElements);
 mynums.setData();
 console.log(mynums.toString());
-mynums.selectionSort();
+mynums.insertionSort();
 console.log(mynums.toString());
