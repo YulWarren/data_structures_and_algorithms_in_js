@@ -24,7 +24,7 @@
 
 - [x] BST
 
-- [ ] Graph
+- [x] Graph
 
 - [ ] Sequence algorithm
 
