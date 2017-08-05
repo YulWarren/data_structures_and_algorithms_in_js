@@ -20,7 +20,7 @@
 
 - [x] HashTable
 
-- [ ] Set
+- [x] Set
 
 - [ ] BST
 
