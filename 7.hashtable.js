@@ -2,7 +2,7 @@
  * @Author: wangyuyang 
  * @Date: 2017-08-04 16:38:55 
  * @Last Modified by: wangyuyang
- * @Last Modified time: 2017-08-04 17:32:32
+ * @Last Modified time: 2017-08-05 08:37:12
  */
 /*
 所有元素根据和该元素对应的键，保存在数组的特定位置。即通过一种函数，将元素（键）映射为一个数字，可通过数字直接提取元素
@@ -21,6 +21,9 @@ function HashTable() {
     this.betterHash = betterHash;
     this.showDistro = showDistro;
     this.put = put;
+    this.get = get;
+    this.buildChains = buildChains;
+    this.value =[]; // 线性探测法需要
 }
 
 // simpleHash 
@@ -33,8 +36,8 @@ function simpleHash(data) {
     return total % this.table.length;
 }
 // put()
-function put(data) {
-    var pos = this.betterHash(data);
+function put(key, data) {
+    var pos = this.betterHash(key);
     this.table[pos] = data;
 }
 // show Distro; show data in hashtable
@@ -98,3 +101,50 @@ for (var i = 0; i < students.length; i++) {
     stable.put(students[i]);
 }
 stable.showDistro();
+
+// 对散列表排序、从散列表中取值
+// put has changed above
+// get data from hashtable
+function get(key) {
+    return this.table[this.betterHash(key)];
+}
+
+// 碰撞处理。两种碰撞解决方法：开链法和线性探测法
+// 开链法：指实现散列表的底层数组中，每个数组元素又是一个新的数据结构，比如数组，这样就能存储多个键。
+// 在创建存储散列过的键值的数组时，通过调用一个函数创建一个新的空数组，然后将该数组赋给散列表里的每个数组元素。（二维数组）
+function buildChains() {
+    for (var i = 0; i < this.table.length; i++) {
+        this.table[i] = new Array();
+    }
+}
+
+// 线性探测法
+// 当发生碰撞时，线性探测法检查散列表中的下一个位置是否为空， 如果为空，就将数据存入该位置；如果不为空，则继续检查下一个位置，直到找到一个空的位置为止。
+// update get and put
+/* function put(key, data) {
+    var pos = this.betterHash(key);
+    if (this.table[pos] == undefined) {
+        this.table[pos] = key;
+        this.value[pos] = data;
+    } else {
+        while (this.table[pos] != undefined) {
+            pos++;
+        }
+        this.table[pos] = key;
+        this.value[pos] = data;
+    }
+}
+function get(key) {
+    // 先搜索键在散列表中的位置，如果找到，则返回数组value中对应位置上的数据；若没找到，则循环搜索，直到找到对应的键或者数据的单元为undefined
+    var hash = -1;
+    hash = this.betterHash(key);
+    if (hash > -1) {
+        for (var i = hash; this.table[hash] != undefined; i++) {
+            if (this.table[hash] == key) {
+                return this.value[hash];
+            }
+        }
+    }
+    return undefined;
+}
+*/
