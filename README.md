@@ -22,7 +22,7 @@
 
 - [x] Set
 
-- [ ] BST
+- [x] BST
 
 - [ ] Graph
 
