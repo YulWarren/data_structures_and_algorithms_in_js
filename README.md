@@ -28,6 +28,6 @@
 
 - [x] Sequence algorithm
 
-- [ ] Seek algorithm
+- [x] Search algorithm
 
 - [ ] High-level algorithm
