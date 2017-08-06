@@ -23,7 +23,7 @@ function setData() {
 }
 
 function clear() {
-    for (var i = 0; i < this.numElements; i++) {
+    for (var i = 0; i < this.dataStore.length; i++) {
         this.dataStore[i] = 0;
     }
 }
@@ -77,7 +77,6 @@ function selectionSort() {
             }
         }
         swap(this.dataStore, outer, min); // 不要放错位置，中译本里有错误
-        console.log(this.toString());
     }
 }
 
@@ -102,17 +101,41 @@ function insertionSort() {
     var temp;
     for (var i = 1; i <= this.dataStore.length - 1; i++) {
         temp = this.dataStore[i];
-        for (var j = i; j > 0 && this.dataStore[j - 1] >= temp; j--) {
+        // for (var j = i; j > 0 && this.dataStore[j - 1] >= temp; j--) {
+        //     this.dataStore[j] = this.dataStore[j - 1];
+        // }
+        var j = i;
+        while(j > 0 && (this.dataStore[j - 1] >= temp)){
             this.dataStore[j] = this.dataStore[j - 1];
+            j--;
         }
         this.dataStore[j] = temp;
-        console.log(this.toString());
+        // console.log(this.toString());
     }
 }
 
-var numElements = 10;
-var mynums = new CArray(numElements);
-mynums.setData();
-console.log(mynums.toString());
-mynums.insertionSort();
-console.log(mynums.toString());
+var numElements = 100000;
+var mynums1 = new CArray(numElements);
+mynums1.setData();
+var start1 = new Date().getTime();
+mynums1.bubbleSort();
+var stop1 = new Date().getTime();
+var elapsed1 = stop1 - start1;
+console.log(`对${numElements} 个元素执行冒泡排序消耗的时间为： ${elapsed1}毫秒`)
+var mynums2 = new CArray(numElements);
+mynums2.setData();
+var start2 = new Date().getTime();
+mynums2.selectionSort();
+var stop2 = new Date().getTime();
+var elapsed2 = stop2 - start2;
+console.log(`对${numElements} 个元素执行选择排序消耗的时间为： ${elapsed2} 毫秒`)
+var mynums3 = new CArray(numElements);
+mynums3.setData();
+var start3 = new Date().getTime();
+mynums3.insertionSort();
+var stop3 = new Date().getTime();
+var elapsed3 = stop3 - start3;
+console.log(`对${numElements} 个元素执行插入排序消耗的时间为： ${elapsed3} 毫秒`)
+
+// 从三种冒泡排序耗时截图中可以看出插入排序最快，冒泡排序最慢
+// 图见timeConsuming.png
