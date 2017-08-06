@@ -26,7 +26,7 @@
 
 - [x] Graph
 
-- [ ] Sequence algorithm
+- [x] Sequence algorithm
 
 - [ ] Seek algorithm
 

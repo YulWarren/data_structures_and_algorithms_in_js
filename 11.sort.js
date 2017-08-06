@@ -268,3 +268,40 @@ console.log(nums2.toString());
 nums2.mergeSort();
 console.log('\nafter merge\n')
 console.log(nums2.toString())
+
+
+// quick sort
+// 快速排序的算法：
+/* 
+1、选择一个基准元素，将列表分隔成两个子序列
+2、对列表重新排序，将所有小于基准值的元素放在基准值前面，所有大于基准值的元素放在基准值的后面
+3、分别对较小元素的子序列和较大元素的子序列重复1和2
+*/
+
+function quickSort(arr) {
+    if (arr.length == 0) {
+        return [];
+    }
+    var left = [];
+    var right = [];
+    var pivot = arr[0];
+    for (var i = 1; i < arr.length; i++) {
+        if (arr[i] < pivot) {
+            left.push(arr[i]);
+        }else{
+            right.push(arr[i]);
+        }
+    }
+    return quickSort(left).concat(pivot, quickSort(right));
+}
+
+var a = [];
+for (var i =0; i<10;i++) {
+    a[i] = Math.floor((Math.random()*100)+1);
+}
+
+console.log('before:\n')
+console.log(a.toString());
+quickSort(a);
+console.log('\nafter\n')
+console.log(quickSort(a).toString())
