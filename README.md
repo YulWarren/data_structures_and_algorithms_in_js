@@ -30,4 +30,4 @@
 
 - [x] Search algorithm
 
-- [ ] High-level algorithm
+- [x] High-level algorithm

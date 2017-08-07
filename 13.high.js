@@ -143,3 +143,81 @@ function lcs1(word1, word2) {
 }
 
 console.log(lcs1('abbss','dbbss'));
+
+// 贪心算法
+// 总是会选择当下的最优解，而不去考虑这一次的选择会不会对未来的选择造成影响。
+
+// 例子：找零问题
+function makeChange(origAmt, coins) {
+    var remainAmt = 0;
+    if (origAmt % 0.25 < origAmt) {
+        coins[3] = parseInt(origAmt / 0.25);
+        remainAmt = origAmt % 0.25;
+        origAmt = remainAmt;
+    }
+    if (origAmt % 0.1 < origAmt) {
+        coins[2] = parseInt(origAmt / 0.1);
+        remainAmt = origAmt % 0.1;
+        origAmt = remainAmt;
+    }
+    if (origAmt % 0.05 < origAmt) {
+        coins[1] = parseInt(origAmt / 0.05);
+        remainAmt = origAmt % 0.05;
+        origAmt = remainAmt;
+    }
+    coins[0] = parseInt(origAmt / 0.01)
+}
+
+function showCoins(coins) {
+    if (coins[3] > 0) {
+        console.log(`25美分的数量：${coins[3]} - ${coins[3] * 0.25}`);
+    }
+    if (coins[2] > 0) {
+        console.log(`10美分的数量：${coins[2]} - ${coins[2] * 0.1}`);
+    }
+    if (coins[1] > 0) {
+        console.log(`5美分的数量：${coins[1]} - ${coins[1] * 0.5}`);
+    }
+    if (coins[0] > 0) {
+        console.log(`1美分的数量：${coins[0]} - ${coins[0] * 0.01}`);
+    }
+}
+
+var origAmt = 0.63;
+var coins = [];
+makeChange(origAmt, coins);
+showCoins(coins);
+
+// 背包问题
+/* 
+1、背包的容量为W，物品的价格为v，重量为w
+2、根据v/w的比率对物品排序
+3、按比率的降序方式来考虑物品
+4、尽可能多地放入每个物品
+*/
+
+function bag(values, weights, capacity) {
+    // capacity即背包共能装多少，是相对于weights来说的
+    var loaded = 0; 
+    var i = 0;
+    var allValue = 0;
+    while(loaded < capacity && i < 4) {
+        // 如果第i件的重量小于等于能装-已装，即还能装
+        if (weights[i] < (capacity - loaded)) {
+            allValue += values[i];
+            loaded += weights[i];
+        } else {
+            r = (capacity - loaded) / weights[i];
+            allValue += r * values[i];
+            loaded += weights[i];
+        }
+        i++;
+    }
+    return allValue;
+}
+
+var items = ["A", "B", "C","D"];
+var values = [50,140,60,60];
+var weights = [5,20,10,12];
+var capacity = 30;
+console.log(bag(values, weights, capacity));
